@@ -130,9 +130,10 @@ class PlayScraper(object):
 
         histogram = {}
         try:
-            reviews = int(soup.select_one('meta[itemprop="ratingCount"]').attrs['content'])
+            reviews = int(soup.select_one('meta[itemprop="reviewCount"]').attrs['content'])
             ratings_section = soup.select_one('div.VEF2C')
-            ratings = [int(r.string.replace(',', '')) for r in ratings_section.select('span.UfW5d')]
+            ratings = [r['title'] for r in ratings_section.select('span.L2o20d')]
+            print(ratings)
             for i in range(5):
                 histogram[5 - i] = ratings[i]
         except AttributeError:

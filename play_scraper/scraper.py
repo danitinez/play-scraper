@@ -102,7 +102,7 @@ class PlayScraper(object):
             img.attrs['srcset'].split()[0]) for img in soup.select('button[data-screenshot-item-index] img[itemprop=image]')]
         thumbnails = [urljoin(
             self._base_url,
-            img.attrs['src']) for img in soup.select('div[data-screenshot-item-index] img[itemprop=image]')]
+            img.attrs['src']) for img in soup.select('button[data-screenshot-item-index] img[itemprop=image]')]
 
         try:
             video = soup.select_one('button[data-trailer-url]').attrs.get('data-trailer-url', None)

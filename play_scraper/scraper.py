@@ -99,7 +99,7 @@ class PlayScraper(object):
             soup.select_one('img[itemprop=image]').attrs['src'].split('=')[0])
         screenshots = [urljoin(
             self._base_url,
-            img.attrs['srcset'].split()[0]) for img in soup.select('div[data-screenshot-item-index] img[itemprop=image]')]
+            img.attrs['srcset'].split()[0]) for img in soup.select('button[data-screenshot-item-index] img[itemprop=image]')]
         thumbnails = [urljoin(
             self._base_url,
             img.attrs['src']) for img in soup.select('div[data-screenshot-item-index] img[itemprop=image]')]

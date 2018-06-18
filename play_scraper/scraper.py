@@ -133,7 +133,6 @@ class PlayScraper(object):
             reviews = int(soup.select_one('meta[itemprop="reviewCount"]').attrs['content'])
             ratings_section = soup.select_one('div.VEF2C')
             ratings = [r['title'] for r in ratings_section.select('span.L2o20d')]
-            print(ratings)
             for i in range(5):
                 histogram[5 - i] = ratings[i]
         except AttributeError:
@@ -149,7 +148,7 @@ class PlayScraper(object):
         free = (price == '0')
 
         additional_info = self._parse_additional_info(soup)
-
+        
         try:
             updated = additional_info.get('updated').string
         except AttributeError:
@@ -180,7 +179,8 @@ class PlayScraper(object):
             required_android_version = 'Not Available'
 
         try:
-            content_rating = additional_info.get('content_rating').select_one('div').string
+            content_rating = additional_info.get('content_rating').select_one('span div').string
+
         except AttributeError:
             content_rating = 'Not Available'
 
